@@ -708,6 +708,12 @@ main {
     align-items: center;
     white-space: nowrap;
     border-radius: 0;
+    transition: all 0.2s ease;  /* Add transition for smooth hover effect */
+  }
+
+  .navbar-links a:hover {
+    background-color: rgba(255, 255, 255, 0.1);  /* Subtle white overlay on hover */
+    padding-left: 1.8rem;  /* Slight indent on hover */
   }
 
   /* Mobile dropdown styles */
@@ -727,6 +733,12 @@ main {
 
   .dropdown-menu a {
     padding: 0.8rem 2.5rem;
+    transition: all 0.2s ease;  /* Add transition for smooth hover effect */
+  }
+
+  .dropdown-menu a:hover {
+    background-color: rgba(255, 255, 255, 0.1);  /* Subtle white overlay on hover */
+    padding-left: 2.8rem;  /* Slight indent on hover */
   }
 
   /* Remove dropdown arrow in mobile */
