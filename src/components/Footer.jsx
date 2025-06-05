@@ -1,10 +1,17 @@
 import React from "react";
+import scicapLogo from "../assets/scicap-logo.png";
+import sloanLogo from "../assets/sloan-logo.png"; // use a placeholder if you don't have the actual logo
 
 export default function Footer() {
   return (
     <footer className="footer">
-      &copy; 2025 SciCap Challenge. Supported by Penn State, MetaMetrics, Adobe Research.<br />
-      For questions, email <a href="mailto:scicap-challenge@googlegroups.com">scicap-challenge@googlegroups.com</a>
+      <div className="footer-top">
+        <img src={scicapLogo} alt="SciCap Logo" style={{ height: "38px" }} />
+        <div className="footer-supported">
+          <span>supported by:</span>
+          <img src={sloanLogo} alt="Sloan Foundation Logo" style={{ height: "38px", marginLeft: "1rem" }} />
+        </div>
+      </div>
     </footer>
   );
 }
