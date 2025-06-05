@@ -2,12 +2,45 @@ import React from "react";
 
 const newsList = [
   {
-    date: "2025-06-02",
-    text: "The leading organizers, Penn State's Ting-Hao 'Kenneth' Huang and C. Lee Giles, are awarded a grant by Alfred P. Sloan Foundation to build and deploy a web-based system that helps writers compose better captions for scientific figures!"
+    date: "Jun 2025",
+    text: "This year, the challenge will be hosted at COLM 2025 (October 7–10, Montreal, Canada). The SciCap Challenge will be held on October 10."
   },
   {
-    date: "2025-05-15",
-    text: "This year, the challenge will be hosted at IJCAI 2024 (August 3–9, Jeju Island, South Korea). The SciCap Challenge will be held on August 6."
+    date: "Nov 2024",
+    text: (
+      <>
+        The leading organizers, Penn State's{' '} 
+        <a 
+          href="http://kennethhuang.cc/" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="news-link"
+        >
+          Ting-Hao 'Kenneth' Huang
+        </a> 
+        {' '}
+        and 
+        {' '} 
+        <a 
+          href="https://clgiles.ist.psu.edu/" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="news-link"
+        >
+          C. Lee Giles
+        </a> 
+        , are awarded a grant by{' '}
+        <a 
+          href="https://sloan.org" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="news-link"
+        >
+          Alfred P. Sloan Foundation
+        </a>
+        {' '}to build and deploy a web-based system that helps writers compose better captions for scientific figures!
+      </>
+    )
   }
 ];
 

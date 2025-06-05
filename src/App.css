@@ -831,3 +831,14 @@ main {
   padding-top: clamp(70px, calc(80px + 2vh), 100px);
 }
 
+.news-link {
+  color: var(--accent);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.news-link:hover {
+  text-decoration: underline;
+  opacity: 0.9;
+}
+
