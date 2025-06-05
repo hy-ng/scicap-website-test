@@ -1,0 +1,264 @@
+:root {
+  --primary: #13294b;
+  --accent: #ffb800;
+  --bg: #f7f7fa;
+  --card-bg: #fff;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  font-family: 'Inter', Arial, sans-serif;
+  color: #222;
+}
+
+/* Container & Layout */
+.app {
+  max-width: 1200px;
+  margin: auto;
+  padding: 1rem;
+}
+
+section {
+  margin-bottom: 2.5rem;
+}
+
+h1, h2, h3 {
+  color: var(--primary);
+  margin-top: 0;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  background: var(--card-bg);
+  border-radius: 1rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 1px 4px #ddd;
+}
+
+.navbar-logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--primary);
+}
+
+.navbar-links {
+  display: flex;
+  gap: 1.3rem;
+}
+
+.navbar-links a {
+  text-decoration: none;
+  color: var(--primary);
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  transition: background 0.2s;
+}
+.navbar-links a:hover {
+  background: var(--accent);
+  color: var(--primary);
+}
+
+/* Hero Section */
+.hero {
+  background: linear-gradient(100deg, #e6e6fa 50%, #fff 100%);
+  padding: 2.5rem 1rem;
+  border-radius: 1.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+.hero h1 {
+  font-size: 2.2rem;
+  margin-bottom: 0.7rem;
+}
+.hero p {
+  font-size: 1.1rem;
+  color: #444;
+}
+
+/* News Section */
+.news-section {
+  margin-bottom: 2rem;
+}
+.news-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+.news-card {
+  background: var(--card-bg);
+  border-radius: 1rem;
+  box-shadow: 0 1px 6px #e3e3e3;
+  padding: 1rem;
+  min-width: 260px;
+  flex: 1 1 260px;
+}
+.news-date {
+  font-size: 0.97rem;
+  font-weight: 500;
+  color: var(--accent);
+}
+
+/* Dataset Section */
+.datasets-section {
+  margin-bottom: 2rem;
+}
+.datasets-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+.dataset-card {
+  background: var(--card-bg);
+  border-radius: 1rem;
+  box-shadow: 0 1px 6px #e3e3e3;
+  padding: 1.2rem;
+  min-width: 220px;
+  flex: 1 1 220px;
+}
+.dataset-card .title {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+.dataset-card .desc {
+  margin: 0.5rem 0 0.7rem 0;
+  color: #444;
+  font-size: 0.97rem;
+}
+.dataset-card .tag {
+  background: var(--accent);
+  color: var(--primary);
+  font-size: 0.9rem;
+  padding: 0.2rem 0.7rem;
+  border-radius: 0.6rem;
+  display: inline-block;
+}
+
+/* Challenge Section */
+.challenge-section {
+  background: linear-gradient(90deg, #ffefd6 60%, #f7f7fa 100%);
+  border-radius: 1.5rem;
+  padding: 2rem 1.2rem;
+}
+.challenge-section h2 {
+  margin-bottom: 0.5rem;
+}
+.challenge-section ul {
+  padding-left: 1.2rem;
+  color: #444;
+}
+
+/* Organizers Section */
+.organizers-section {
+  background: var(--card-bg);
+  border-radius: 1.5rem;
+  padding: 1.5rem 1rem;
+  margin-top: 2rem;
+  box-shadow: 0 1px 4px #eee;
+}
+.organizers-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+.organizer-card {
+  flex: 1 1 180px;
+  min-width: 180px;
+  background: #f3f7fc;
+  border-radius: 0.7rem;
+  padding: 1rem;
+  text-align: center;
+}
+.organizer-card h4 {
+  margin: 0.5rem 0 0 0;
+  color: var(--primary);
+  font-weight: 600;
+}
+.organizer-card .affil {
+  color: #4a4a4a;
+  font-size: 0.98rem;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  color: #aaa;
+  font-size: 0.97rem;
+  margin-top: 2.5rem;
+  padding-bottom: 1.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+  .news-list,
+  .datasets-list,
+  .organizers-list {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .hero {
+    font-size: 0.98rem;
+    padding: 2rem 0.5rem;
+  }
+  .challenge-section {
+    padding: 1.2rem 0.7rem;
+  }
+}
+@media (max-width: 600px) {
+  .navbar, .hero, .challenge-section, .organizers-section, .datasets-section, .news-section {
+    border-radius: 0.8rem;
+    padding: 1rem 0.3rem !important;
+  }
+  .navbar-logo {
+    font-size: 1.25rem;
+  }
+}
+
+
+/* #root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+} */
