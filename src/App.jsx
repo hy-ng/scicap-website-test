@@ -10,9 +10,9 @@ import BackgroundPattern from "./components/BackgroundPattern"; // Uncomment if 
 function App() {
   return (
     <>
-    <Navbar />
-      <div>
-      <BackgroundPattern />
+      <Navbar />
+      <div className="main-wrapper">
+        <BackgroundPattern />
         <main>
           <NewsSection />
           <HeroSection />

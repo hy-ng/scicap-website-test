@@ -10,6 +10,7 @@
     z-index: -1;
     pointer-events: none;
     overflow: visible;
+    transition: opacity 0.3s ease;
 }
 
 /* For screens larger than 1440px, allow scaling up */
@@ -21,9 +22,15 @@
     }
 }
 
-/* For screens smaller than 1440px, maintain size and let overflow */
-@media (max-width: 1440px) {
+/* For mobile screens */
+@media (max-width: 900px) {
     .background-pattern {
-        width: 1440px; /* Force constant width */
+        width: 1440px; /* Keep original width */
+        min-width: 1440px;
+        object-fit: cover;
+        object-position: center top;
+        opacity: 0.6; /* Make the pattern more subtle on mobile */
+        left: 50%;
+        transform: translateX(-50%);
     }
 }
