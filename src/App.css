@@ -650,13 +650,13 @@ main {
   .navbar {
     padding: 1rem 2.2rem;
     width: 100%;
+    z-index: 1000;
   }
 
   .navbar-links {
     display: none;
-    position: fixed;
-    top: 100%;
-    right: 0;
+    position: absolute;
+    top: 80px; /* Match navbar height */
     left: 0;
     width: 100%;
     flex-direction: column;
@@ -665,13 +665,8 @@ main {
     margin: 0;
     gap: 0;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-    max-height: calc(100vh - 100%);
-    overflow-y: auto;
-    overflow-x: hidden;
-    -webkit-overflow-scrolling: touch;
-    border-radius: 0;
-    border-top: 2px solid rgba(255, 255, 255, 0.1);
+    z-index: 999;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   .navbar-links.mobile-open {
@@ -694,40 +689,9 @@ main {
     border-radius: 0;
   }
 
-  /* Add hover effect for mobile instead of active state */
-  .navbar-links a:hover {
-    background: rgba(255, 255, 255, 0.1);
-  }
-
-  /* Remove active state styling for mobile */
-  .navbar-links a.active {
-    background: transparent;
-    color: var(--footer-text);
-  }
-
-  /* Style scrollbar for better visibility */
-  .navbar-links::-webkit-scrollbar {
-    width: 6px;
-  }
-
-  .navbar-links::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.1);
-  }
-
-  .navbar-links::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 3px;
-  }
-
-  .navbar-links::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.3);
-  }
-
   /* Mobile dropdown styles */
   .dropdown-menu {
     position: static;
-    transform: none;
-    box-shadow: none;
     width: 100%;
     margin: 0;
     padding: 0;
@@ -738,6 +702,15 @@ main {
 
   .dropdown-menu.show {
     display: block;
+  }
+
+  .dropdown-menu a {
+    padding: 0.8rem 2.5rem;
+  }
+
+  /* Remove dropdown arrow in mobile */
+  .dropdown-menu::before {
+    display: none;
   }
 
   /* Adjust main content padding for mobile */
