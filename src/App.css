@@ -32,7 +32,6 @@ body {
 
 main {
   min-height: 60vh;
-  padding-top: clamp(70px, calc(80px + 2vh), 100px);
 }
 
 /* Navbar */
@@ -220,8 +219,22 @@ main {
 }
 
 @media (max-width: 900px) {
+  .navbar {
+    padding: 1rem 2.2rem;
+    width: 100%;
+    z-index: 1000;
+  }
+
+  .main-wrapper {
+    padding-top: 80px;  /* Fixed value for mobile */
+  }
+
+  main {
+    padding-top: 0;  /* Remove padding since main-wrapper handles it */
+  }
+
   .news-section {
-    margin: 0.75rem auto;
+    margin: 0.5rem auto;  /* Reduced margin for mobile */
   }
   
   /* When mobile menu is open, adjust spacing */
@@ -467,6 +480,20 @@ main {
   .dataset-cards { 
     grid-template-columns: 1fr; 
   }
+
+  /* Adjust main content padding for mobile */
+  main {
+    padding-top: 0;
+  }
+
+  .main-wrapper {
+    padding-top: 80px;  /* Keep fixed padding for mobile */
+  }
+
+  /* Add extra top margin to NEWS section in mobile */
+  .news-section {
+    margin-top: 1.5rem;  /* Reduced from 3rem but still maintains some spacing */
+  }
 }
 
 @media (max-width: 600px) {
@@ -647,12 +674,6 @@ main {
     z-index: 1001;
   }
 
-  .navbar {
-    padding: 1rem 2.2rem;
-    width: 100%;
-    z-index: 1000;
-  }
-
   .navbar-links {
     display: none;
     position: absolute;
@@ -715,12 +736,20 @@ main {
 
   /* Adjust main content padding for mobile */
   main {
-    padding-top: 80px;
+    padding-top: 0;  /* Remove padding since main-wrapper handles it */
   }
 
-  /* Add extra top margin to NEWS section in mobile */
+  .main-wrapper {
+    padding-top: 80px;  /* Fixed value for mobile */
+  }
+
   .news-section {
-    margin-top: 3rem;
+    margin: 0.5rem auto;  /* Reduced margin for mobile */
+  }
+  
+  /* When mobile menu is open, adjust spacing */
+  .mobile-open + .main-wrapper .news-section {
+    margin-top: 0.5rem;
   }
 }
 
@@ -788,15 +817,5 @@ main {
   position: relative;
   min-height: 100vh;
   padding-top: clamp(70px, calc(80px + 2vh), 100px);
-}
-
-@media (max-width: 900px) {
-  main {
-    padding-top: 80px;
-  }
-  
-  .main-wrapper {
-    padding-top: 80px;
-  }
 }
 
