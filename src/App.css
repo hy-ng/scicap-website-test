@@ -1,17 +1,23 @@
 :root {
   --primary: #04352f;
-  --accent: #ffb800;
+  --accent: #FF9939;
   --card-bg: #fff;
-  --footer-bg: #04352f;
+  --footer-bg: #082422;
   --footer-text: #fff;
   --border: #e5e7eb;
 }
 
 body {
-  font-family: 'Inter', Arial, sans-serif;
+  font-family: 'Outfit', Arial, sans-serif;
   margin: 0;
-  background: #f8fafd;
+  background: #ffffff;
   color: #17212b;
+
+  /* Background pattern */
+  background-image: url('./assets/pattern-bg.svg');
+  background-repeat: repeat-y;
+  background-position: top center;
+  background-size: 100% auto;
 }
 main {
   min-height: 60vh;
