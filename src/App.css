@@ -5,6 +5,10 @@
   --footer-bg: #082422;
   --footer-text: #fff;
   --border: #e5e7eb;
+
+  --breakpoint-mobile: 640px;
+  --breakpoint-tablet: 900px;
+  --breakpoint-desktop: 1025px;
 }
 
 body {
@@ -12,13 +16,8 @@ body {
   margin: 0;
   background: #ffffff;
   color: #17212b;
-
-  /* Background pattern */
-  background-image: url('./assets/pattern-bg.svg');
-  background-repeat: repeat-y;
-  background-position: top center;
-  background-size: 100% auto;
 }
+
 main {
   min-height: 60vh;
 }
