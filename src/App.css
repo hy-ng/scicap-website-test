@@ -10,7 +10,8 @@
   --footer-bg: #082422;
   --footer-text: #fff;
   --border: #e5e7eb;
-  --navbar-height: 80px;
+  --navbar-height: auto;
+  --navbar-padding: 0.8rem;
 
   --breakpoint-mobile: 640px;
   --breakpoint-tablet: 900px;
@@ -31,7 +32,7 @@ body {
 
 main {
   min-height: 60vh;
-  padding-top: calc(var(--navbar-height) + 1rem);
+  padding-top: clamp(70px, calc(80px + 2vh), 100px);
 }
 
 /* Navbar */
@@ -40,19 +41,28 @@ main {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.8rem 2.2rem;
+  padding: var(--navbar-padding) 2.2rem;
   border-bottom: 2px solid #e3e8ef;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
+  min-height: 80px;
 }
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+}
+
 .navbar-logo img {
   height: clamp(55px, 7vw, 75px);
   width: auto;
   max-width: 100%;
+  display: block;
 }
+
 .navbar-links {
   display: flex;
   gap: 1.4rem;
@@ -204,11 +214,19 @@ main {
 }
 
 /* News Section */
+.news-section {
+  margin: clamp(3rem, 8vh, 6rem) auto;
+  padding: 0 1rem;
+}
 
 @media (max-width: 900px) {
-  /* When mobile menu is open, add more space */
+  .news-section {
+    margin: 0.75rem auto;
+  }
+  
+  /* When mobile menu is open, adjust spacing */
   .mobile-open + .main-wrapper .news-section {
-    padding-top: 1rem;
+    margin-top: 0.5rem;
   }
 }
 
@@ -248,9 +266,10 @@ main {
 
 /* Hero Section */
 .hero-section {
-  margin: 4rem auto 4rem auto;
+  margin: clamp(3rem, 8vh, 6rem) auto;
   text-align: center;
   max-width: 880px;
+  padding: 0 1rem;
 }
 .hero-title {
   color: var(--accent);
@@ -274,9 +293,10 @@ main {
 
 /* Dataset Section */
 .dataset-section {
-  margin: 4rem auto 4rem auto;
+  margin: clamp(3rem, 8vh, 6rem) auto;
   max-width: 1200px;
   text-align: center;
+  padding: 0 1.5rem;
 }
 .dataset-title {
   color: var(--accent);
@@ -369,7 +389,7 @@ main {
   background: var(--footer-bg);
   color: var(--footer-text);
   padding: 1.6rem 0 1.2rem 0;
-  margin-top: 4rem;
+  margin-top: clamp(3rem, 8vh, 6rem);
 }
 .footer-top {
   display: flex;
@@ -587,6 +607,10 @@ main {
   cursor: pointer;
   padding: 0;
   z-index: 10;
+  position: absolute;
+  right: 2.2rem;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .hamburger-menu:focus {
@@ -620,20 +644,18 @@ main {
 @media (max-width: 900px) {
   .hamburger-menu {
     display: flex;
-    position: relative;
     z-index: 1001;
-    margin-bottom: -2px;
   }
 
   .navbar {
-    padding: 1rem 1.5rem;
+    padding: 1rem 2.2rem;
     width: 100%;
   }
 
   .navbar-links {
     display: none;
     position: fixed;
-    top: var(--navbar-height);
+    top: 100%;
     right: 0;
     left: 0;
     width: 100%;
@@ -644,7 +666,7 @@ main {
     gap: 0;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     z-index: 1000;
-    max-height: calc(100vh - var(--navbar-height));
+    max-height: calc(100vh - 100%);
     overflow-y: auto;
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
@@ -720,7 +742,12 @@ main {
 
   /* Adjust main content padding for mobile */
   main {
-    padding-top: calc(var(--navbar-height) + 0.5rem);
+    padding-top: 80px;
+  }
+
+  /* Add extra top margin to NEWS section in mobile */
+  .news-section {
+    margin-top: 3rem;
   }
 }
 
@@ -787,12 +814,16 @@ main {
 .main-wrapper {
   position: relative;
   min-height: 100vh;
-  padding-top: var(--navbar-height);
+  padding-top: clamp(70px, calc(80px + 2vh), 100px);
 }
 
 @media (max-width: 900px) {
+  main {
+    padding-top: 80px;
+  }
+  
   .main-wrapper {
-    padding-top: calc(var(--navbar-height) + 1rem);
+    padding-top: 80px;
   }
 }
 
