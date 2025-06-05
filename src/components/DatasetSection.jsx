@@ -4,27 +4,38 @@ const datasetList = [
   {
     title: "LaMP-CAP (2025)",
     desc: "Curated from the SciCap Challenge Dataset for personalized caption generation with multimodal figure profiles.",
-    tags: ["Paper", "Dataset"],
+    links: {
+      paper: "#",
+      dataset: "#"
+    }
   },
   {
     title: "SciCap Challenge (2023)",
     desc: "400,000 scientific figure images from various arXiv papers, along with their respective captions and relevant paragraphs.",
-    tags: ["Paper", "Dataset"],
+    links: {
+      paper: "https://aclanthology.org/2023.inlg-main.6/",
+      dataset: "#"
+    }
+  },
+  {
+    title: "SciCap-Eval (2023)",
+    desc: "TBC",
+    links: {
+      paper: "https://aclanthology.org/2023.findings-emnlp.363/",
+      dataset: "#"
+    }
   },
   {
     title: "SciCap (2021)",
     desc: "Large-scale image captioning dataset featuring real-world scientific figures and their captions. It includes over two million images from more than 290,000 arXiv papers.",
-    tags: ["Paper", "Dataset"],
+    links: {
+      paper: "https://aclanthology.org/2021.findings-emnlp.277/",
+      dataset: "https://github.com/tingyaohsu/scicap"
+    }
   },
   {
-    title: "SciCap-Eval (2023)",
-    desc: "Curated from the SciCap Challenge Dataset for personalized caption generation with multimodal figure profiles.",
-    tags: ["Paper", "Dataset"],
-  },
-  {
-    title: "SciCap ALL (2025)",
-    desc: "400,000 scientific figure images from various arXiv papers, along with their respective captions and relevant paragraphs.",
-    tags: ["Paper", "Dataset"],
+    title: "Coming Soon...",
+    desc: "Stay tuned for our next dataset release! We're working on something exciting to further advance scientific figure understanding.",
   },
 ];
 
@@ -37,11 +48,28 @@ export default function DatasetSection() {
           <div className="dataset-card" key={idx}>
             <div className="dataset-card-title">{ds.title}</div>
             <div className="dataset-card-desc">{ds.desc}</div>
-            <div className="dataset-card-tags">
-              {ds.tags.map((tag, i) => (
-                <span className="dataset-tag" key={i}>{tag}</span>
-              ))}
-            </div>
+            {ds.links && (
+              <div className="dataset-card-buttons">
+                <a 
+                  href={ds.links.paper}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`dataset-button paper-button ${ds.links.paper === "#" ? "inactive" : ""}`}
+                  onClick={ds.links.paper === "#" ? (e) => e.preventDefault() : undefined}
+                >
+                  Paper
+                </a>
+                <a 
+                  href={ds.links.dataset}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`dataset-button dataset-button ${ds.links.dataset === "#" ? "inactive" : ""}`}
+                  onClick={ds.links.dataset === "#" ? (e) => e.preventDefault() : undefined}
+                >
+                  Dataset
+                </a>
+              </div>
+            )}
           </div>
         ))}
       </div>
