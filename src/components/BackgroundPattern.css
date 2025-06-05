@@ -1,28 +1,29 @@
-
 .background-pattern {
     position: fixed;           /* or absolute, if you want */
     top: 0; left: 50%;
     transform: translateX(-50%);
-    width: 100vw;              /* Always fills screen width */
-    /* max-width: 1440px;         SVG native width */
-    min-width: 600px;          /* Optional: don't squeeze to nothing */
-    min-height: 600px;
-    height: auto;
+    width: 100%;
+    min-width: 1440px;  /* Prevent scaling down below this width */
+    height: 100vh;
+    object-fit: cover;
+    object-position: center top;
     z-index: -1;
     pointer-events: none;
-    transition: width 0.1s, transform 0.1s;
-  }
-  
-  @media (max-width: 700px) {
+    overflow: visible;
+}
+
+/* For screens larger than 1440px, allow scaling up */
+@media (min-width: 1441px) {
     .background-pattern {
-      /* Start to scale down for extra-small screens */
-      width: 700px;           /* Stop squeezing smaller */
-      transform: translateX(-50%) scale(0.85);
+        width: 100%;
+        min-width: unset; /* Remove the minimum width constraint */
+        max-width: 2560px; /* Optional: set a maximum width for very large screens */
     }
-  }
-  @media (max-width: 500px) {
+}
+
+/* For screens smaller than 1440px, maintain size and let overflow */
+@media (max-width: 1440px) {
     .background-pattern {
-      width: 700px;           /* Keep at 700px, but scale further */
-      transform: translateX(-50%);
+        width: 1440px; /* Force constant width */
     }
-  }
+}
