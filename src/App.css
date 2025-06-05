@@ -11,6 +11,11 @@
   --breakpoint-desktop: 1025px;
 }
 
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
 body {
   font-family: 'Outfit', Arial, sans-serif;
   margin: 0;
@@ -32,7 +37,9 @@ main {
   border-bottom: 2px solid #e3e8ef;
 }
 .navbar-logo img {
-  height: 38px;
+  height: clamp(55px, 7vw, 75px);
+  width: auto;
+  max-width: 100%;
 }
 .navbar-links {
   display: flex;
@@ -196,8 +203,16 @@ main {
   color: var(--footer-text);
   margin-left: 2.5rem;
 }
+.footer-logo {
+  height: clamp(50px, 6vw, 65px);
+  width: auto;
+  max-width: 100%;
+}
 .footer-supported img {
-  height: 38px;
+  height: clamp(50px, 6vw, 65px);
+  width: auto;
+  max-width: 100%;
+  margin-left: clamp(0.5rem, 2vw, 1.5rem);
 }
 
 /* Responsive */
@@ -210,3 +225,4 @@ main {
   .footer-supported { margin-left: 0;}
   .hero-section { padding: 0 0.3rem;}
 }
+

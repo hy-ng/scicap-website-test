@@ -6,10 +6,17 @@ export default function Footer() {
   return (
     <footer className="footer">
       <div className="footer-top">
-        <img src={scicapLogo} alt="SciCap Logo" style={{ height: "38px" }} />
+        <img 
+          src={scicapLogo} 
+          alt="SciCap Logo" 
+          className="footer-logo"
+        />
         <div className="footer-supported">
           <span>supported by:</span>
-          <img src={sloanLogo} alt="Sloan Foundation Logo" style={{ height: "38px", marginLeft: "1rem" }} />
+          <img 
+            src={sloanLogo} 
+            alt="Sloan Foundation Logo"
+          />
         </div>
       </div>
     </footer>
