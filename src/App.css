@@ -943,3 +943,50 @@ main {
   }
 }
 
+/* NoPage (404) styles */
+.no-page {
+  min-height: calc(100vh - 300px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  margin-top: 80px;
+}
+
+.no-page h1 {
+  font-size: 6rem;
+  color: var(--accent);
+  margin: 0;
+  line-height: 1;
+}
+
+.no-page h2 {
+  font-size: 2rem;
+  color: var(--primary);
+  margin: 1rem 0;
+}
+
+.no-page p {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.no-page .back-home {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background-color: var(--accent);
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.no-page .back-home:hover {
+  background-color: var(--accent-dark);
+  transform: translateY(-2px);
+}
+
