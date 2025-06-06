@@ -47,7 +47,7 @@ const newsList = [
 export default function NewsSection() {
   return (
     <section className="news-section">
-      <h2 className="news-title">NEWS</h2>
+      <h2 className="section-header news-title">NEWS</h2>
       <div className="news-cards">
         {newsList.map((item, idx) => (
           <div className="news-card" key={idx}>

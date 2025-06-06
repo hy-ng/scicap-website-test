@@ -3,7 +3,7 @@ import React from "react";
 const datasetList = [
   {
     title: "LaMP-CAP (2025)",
-    desc: "Curated from the SciCap Challenge Dataset for personalized caption generation with multimodal figure profiles.",
+    desc: "A dataset of over 300,000 figures from more than 110,000 scientific papers, curated for personalized caption generation with multimodal figure profiles.",
     links: {
       paper: "#",
       dataset: "#"
@@ -42,7 +42,7 @@ const datasetList = [
 export default function DatasetSection() {
   return (
     <section className="dataset-section">
-      <h2 className="dataset-title">DATASET</h2>
+      <h2 className="section-header dataset-title">DATASET</h2>
       <div className="dataset-cards">
         {datasetList.map((ds, idx) => (
           <div className="dataset-card" key={idx}>

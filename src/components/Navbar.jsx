@@ -20,56 +20,44 @@ const navLinks = [
 ];
 
 export default function Navbar() {
-  const [activeDropdown, setActiveDropdown] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navRef = useRef(null);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      // Close menu if click is outside navbar
       if (navRef.current && !navRef.current.contains(event.target)) {
         setIsMobileMenuOpen(false);
-        setActiveDropdown(null);
       }
     };
 
-    // Add event listeners for click/touch outside
     document.addEventListener('mousedown', handleClickOutside);
     document.addEventListener('touchstart', handleClickOutside);
 
-    // Clean up event listeners
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
       document.removeEventListener('touchstart', handleClickOutside);
     };
-  }, [isMobileMenuOpen]); // Only re-run if isMobileMenuOpen changes
+  }, []);
 
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-    setActiveDropdown(null);
-  };
-
-  const renderLink = (item, onClick) => {
+  const renderLink = (item) => {
     if (item.target === '_blank' || item.href.startsWith('http')) {
       return (
         <a
           href={item.href}
           target={item.target}
           rel={item.target === '_blank' ? 'noopener noreferrer' : undefined}
-          onClick={onClick}
           className={item.inactive ? 'inactive' : ''}
         >
-          {item.text}
+          {item.text}{item.hasDropdown && <span className="dropdown-arrow">▸</span>}
         </a>
       );
     }
     return (
       <Link
         to={item.href}
-        onClick={onClick}
         className={item.inactive ? 'inactive' : ''}
       >
-        {item.text}
+        {item.text}{item.hasDropdown && <span className="dropdown-arrow">▸</span>}
       </Link>
     );
   };
@@ -82,10 +70,9 @@ export default function Navbar() {
         </Link>
       </div>
 
-      {/* Hamburger Menu Button */}
       <button 
         className={`hamburger-menu ${isMobileMenuOpen ? 'open' : ''}`}
-        onClick={toggleMobileMenu}
+        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         aria-label="Toggle navigation menu"
       >
         <span></span>
@@ -97,27 +84,14 @@ export default function Navbar() {
         {navLinks.map((link) => (
           <li 
             key={link.text}
-            onMouseEnter={() => link.hasDropdown && setActiveDropdown(link.text)}
-            onMouseLeave={() => setActiveDropdown(null)}
             className={link.hasDropdown ? 'has-dropdown' : ''}
           >
-            {renderLink(link, () => {
-              if (link.hasDropdown && window.innerWidth <= 900) {
-                setActiveDropdown(activeDropdown === link.text ? null : link.text);
-              } else {
-                setIsMobileMenuOpen(false);
-                setActiveDropdown(null);
-              }
-            })}
-            {link.hasDropdown && <span className="dropdown-arrow">▾</span>}
-            {link.hasDropdown && (activeDropdown === link.text || window.innerWidth <= 900) && (
-              <ul className={`dropdown-menu ${activeDropdown === link.text ? 'show' : ''}`}>
+            {renderLink(link)}
+            {link.hasDropdown && (
+              <ul className="dropdown-menu">
                 {link.dropdownItems.map((item) => (
                   <li key={item.text}>
-                    {renderLink(item, () => {
-                      setIsMobileMenuOpen(false);
-                      setActiveDropdown(null);
-                    })}
+                    {renderLink(item)}
                   </li>
                 ))}
               </ul>

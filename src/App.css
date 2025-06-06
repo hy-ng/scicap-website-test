@@ -80,6 +80,7 @@ main {
   display: flex;
   align-items: center;
   position: relative;
+  gap: 0.3rem;
 }
 
 .navbar-links a.inactive {
@@ -91,15 +92,6 @@ main {
 .navbar-links a.inactive:hover {
   background: none;
   transform: none;
-}
-
-.dropdown-arrow {
-  margin-left: 0.4rem;
-  font-size: 0.8rem;
-  opacity: 0.8;
-  transition: transform 0.2s ease;
-  display: inline-block;
-  transform: rotate(-90deg);  /* Start rotated left */
 }
 
 /* Desktop styles */
@@ -120,31 +112,10 @@ main {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
 
-  /* Change rotation to point down on hover */
-  .has-dropdown:hover .dropdown-arrow {
-    transform: rotate(0deg);  /* Rotate to point down */
-  }
-
   .navbar-links li:hover .dropdown-menu {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
-  }
-
-  .dropdown-menu {
-    transform: translateY(-10px);
-    transition: all 0.2s ease-in-out;
-  }
-
-  .dropdown-menu a {
-    padding: 0.5rem 1.2rem;
-    border-radius: 0;
-    white-space: nowrap;
-  }
-
-  .dropdown-menu a:hover {
-    background: rgba(255, 255, 255, 0.1);
-    transform: none !important;
   }
 }
 
@@ -254,13 +225,32 @@ main {
   }
 }
 
-.news-title {
+/* Common section header style */
+.section-header {
   color: var(--accent);
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
   text-align: center;
+  letter-spacing: 0.1em;
   font-weight: bold;
-  font-size: 1.35rem;
-  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* Update existing section title styles */
+.news-title {
+  composes: section-header;
   margin-bottom: 2.2rem;
+}
+
+.hero-title {
+  composes: section-header;
+  margin-bottom: 1.1rem;
+  text-transform: none; /* Override for "What is SciCap?" */
+}
+
+.dataset-title {
+  composes: section-header;
+  margin-bottom: 2.1rem;
 }
 
 .news-cards {
@@ -295,13 +285,6 @@ main {
   max-width: 880px;
   padding: 0 1rem;
 }
-.hero-title {
-  color: var(--accent);
-  font-weight: bold;
-  letter-spacing: 0.08em;
-  font-size: 1.35rem;
-  margin-bottom: 1.1rem;
-}
 .scicap-accent {
   color: var(--primary);
   font-style: italic;
@@ -321,13 +304,6 @@ main {
   max-width: 1200px;
   text-align: center;
   padding: 0 1.5rem;
-}
-.dataset-title {
-  color: var(--accent);
-  font-weight: bold;
-  font-size: 1.3rem;
-  letter-spacing: 0.12em;
-  margin-bottom: 2.1rem;
 }
 .dataset-cards {
   display: grid;
@@ -696,7 +672,7 @@ main {
   .navbar-links {
     display: none;
     position: absolute;
-    top: 80px; /* Match navbar height */
+    top: 80px;
     left: 0;
     width: 100%;
     flex-direction: column;
@@ -727,12 +703,28 @@ main {
     align-items: center;
     white-space: nowrap;
     border-radius: 0;
-    transition: all 0.2s ease;  /* Add transition for smooth hover effect */
+    transition: all 0.2s ease;
+    gap: 0.3rem;
+  }
+
+  .dropdown-arrow {
+    margin-left: 0.1rem;
+    transition: transform 0.2s ease;
+  }
+
+  /* Show dropdown menu and rotate arrow when active */
+  .dropdown-menu.show {
+    display: block;
+  }
+
+  /* Rotate arrow when dropdown is active */
+  li:has(.dropdown-menu.show) .dropdown-arrow {
+    transform: rotate(90deg);
   }
 
   .navbar-links a:hover {
-    background-color: rgba(255, 255, 255, 0.1);  /* Subtle white overlay on hover */
-    padding-left: 1.8rem;  /* Slight indent on hover */
+    background-color: rgba(255, 255, 255, 0.1);
+    padding-left: 1.8rem;
   }
 
   /* Mobile dropdown styles */
@@ -743,25 +735,6 @@ main {
     padding: 0;
     background: rgba(255, 255, 255, 0.05);
     border: none;
-    display: none;
-  }
-
-  .dropdown-menu.show {
-    display: block;
-  }
-
-  .dropdown-menu a {
-    padding: 0.8rem 2.5rem;
-    transition: all 0.2s ease;  /* Add transition for smooth hover effect */
-  }
-
-  .dropdown-menu a:hover {
-    background-color: rgba(255, 255, 255, 0.1);  /* Subtle white overlay on hover */
-    padding-left: 2.8rem;  /* Slight indent on hover */
-  }
-
-  /* Remove dropdown arrow in mobile */
-  .dropdown-menu::before {
     display: none;
   }
 
@@ -859,5 +832,114 @@ main {
 .news-link:hover {
   text-decoration: underline;
   opacity: 0.9;
+}
+
+/* Mobile styles */
+@media (max-width: 900px) {
+  .dropdown-arrow {
+    margin-left: 0.2rem;
+  }
+
+  /* Rotate arrow when dropdown is active in mobile */
+  .dropdown-menu.show + a .dropdown-arrow,
+  .has-dropdown.active .dropdown-arrow {
+    transform: rotate(90deg);
+  }
+}
+
+.dropdown-arrow {
+  display: inline-block;
+  margin-left: 0.1rem;
+  transition: transform 0.2s ease;
+}
+
+/* Rotate arrow on hover and when dropdown is visible */
+.navbar-links a:hover .dropdown-arrow,
+.has-dropdown:hover .dropdown-arrow {
+  transform: rotate(90deg);
+}
+
+/* Show dropdown menu on hover */
+.has-dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  display: block;
+}
+
+/* Desktop styles */
+@media (min-width: 901px) {
+  .navbar-links a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-1px);
+  }
+
+  .navbar-links a.active {
+    background: var(--footer-text);
+    color: var(--primary);
+  }
+
+  .navbar-links a.active:hover {
+    background: var(--footer-text);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 200px;
+    background: var(--primary);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 0.5rem 0;
+    margin-top: 0.5rem;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.2s ease-in-out;
+  }
+}
+
+/* Mobile Navigation Styles */
+@media (max-width: 900px) {
+  .navbar-links a {
+    padding: 1rem 1.5rem;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    white-space: nowrap;
+    border-radius: 0;
+    transition: all 0.2s ease;
+  }
+
+  .navbar-links a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding-left: 1.8rem;
+  }
+
+  .dropdown-menu {
+    position: static;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border: none;
+    display: none;
+  }
+
+  /* Keep arrow rotated when dropdown is visible in mobile */
+  .dropdown-menu:not([style*="display: none"]) ~ a .dropdown-arrow,
+  .dropdown-menu.show ~ a .dropdown-arrow {
+    transform: rotate(90deg);
+  }
+
+  .dropdown-menu a {
+    padding-left: 2.5rem;
+  }
+
+  .dropdown-menu a:hover {
+    padding-left: 2.8rem;
+  }
 }
 
