@@ -25,6 +25,9 @@ export default function Footer() {
         <p className="copyright">
           Copyright © {currentYear} <a href="https://crowd.ist.psu.edu/crowd-ai-lab.html" target="_blank" rel="noopener noreferrer">Crowd-AI Lab, Penn State</a>. All rights reserved.
         </p>
+        <p className="credit">
+          Designed & Developed by <a href="https://hy-ng.github.io/" target="_blank" rel="noopener noreferrer">Ho Yin (Sam) Ng</a>
+        </p>
       </div>
     </footer>
   );

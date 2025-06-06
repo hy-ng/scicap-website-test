@@ -82,6 +82,17 @@ main {
   position: relative;
 }
 
+.navbar-links a.inactive {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.navbar-links a.inactive:hover {
+  background: none;
+  transform: none;
+}
+
 .dropdown-arrow {
   margin-left: 0.4rem;
   font-size: 0.8rem;
@@ -445,13 +456,21 @@ main {
   margin: 0;
 }
 
-.copyright a {
+.credit {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0.5rem 0 0 0;
+}
+
+.copyright a,
+.credit a {
   color: rgba(255, 255, 255, 0.8);
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
-.copyright a:hover {
+.copyright a:hover,
+.credit a:hover {
   color: var(--footer-text);
   text-decoration: underline;
 }

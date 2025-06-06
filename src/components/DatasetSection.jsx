@@ -14,12 +14,12 @@ const datasetList = [
     desc: "400,000 scientific figure images from various arXiv papers, along with their respective captions and relevant paragraphs.",
     links: {
       paper: "https://aclanthology.org/2023.inlg-main.6/",
-      dataset: "#"
+      dataset: "https://huggingface.co/datasets/CrowdAILab/scicap"
     }
   },
   {
     title: "SciCap-Eval (2023)",
-    desc: "TBC",
+    desc: "A human evaluation dataset that contains human judgments for 3,600 scientific figure captions for 600 arXiv figures.",
     links: {
       paper: "https://aclanthology.org/2023.findings-emnlp.363/",
       dataset: "#"

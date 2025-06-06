@@ -1,20 +1,22 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import scicapLogo from "../assets/scicap-logo.png"; //TODO: Change to svg if possible (ask Kenneth if got original file)
 
 const navLinks = [
-  { text: "Home", href: "#", active: true },
-  { text: "People", href: "#" },
-  { text: "Dataset", href: "#" },
+  { text: "Home", href: "/", active: true },
+  { text: "People", href: "#", inactive: true },
+  { text: "Dataset", href: "#", inactive: true },
   { 
     text: "Challenge",
     href: "#",
     hasDropdown: true,
     dropdownItems: [
+      { text: "2025", href: "/challenge/2025" },
       { text: "2024", href: "https://gusty-cabbage-7e7.notion.site/The-Second-Scientific-Figure-Captioning-Challenge-SCICAP-Challenge-2024-d9131ae2517640998430fac2271c6e43", target: "_blank" },
       { text: "2023", href: "https://crowdailab.notion.site/The-1st-Scientific-Figure-Captioning-SciCap-Challenge-47b914e092dd4965af7b432f6b2d42e8", target: "_blank" }
     ]
   },
-  { text: "External", href: "#" },
+  { text: "External", href: "#", inactive: true },
 ];
 
 export default function Navbar() {
@@ -47,10 +49,37 @@ export default function Navbar() {
     setActiveDropdown(null);
   };
 
+  const renderLink = (item, onClick) => {
+    if (item.target === '_blank' || item.href.startsWith('http')) {
+      return (
+        <a
+          href={item.href}
+          target={item.target}
+          rel={item.target === '_blank' ? 'noopener noreferrer' : undefined}
+          onClick={onClick}
+          className={item.inactive ? 'inactive' : ''}
+        >
+          {item.text}
+        </a>
+      );
+    }
+    return (
+      <Link
+        to={item.href}
+        onClick={onClick}
+        className={item.inactive ? 'inactive' : ''}
+      >
+        {item.text}
+      </Link>
+    );
+  };
+
   return (
     <nav className="navbar" ref={navRef}>
       <div className="navbar-logo">
-        <img src={scicapLogo} alt="SciCap Logo" />
+        <Link to="/">
+          <img src={scicapLogo} alt="SciCap Logo" />
+        </Link>
       </div>
 
       {/* Hamburger Menu Button */}
@@ -72,39 +101,23 @@ export default function Navbar() {
             onMouseLeave={() => setActiveDropdown(null)}
             className={link.hasDropdown ? 'has-dropdown' : ''}
           >
-            <a
-              href={link.href}
-              className={link.active ? "active" : ""}
-              tabIndex="0"
-              onClick={() => {
-                if (link.hasDropdown && window.innerWidth <= 900) {
-                  // Toggle dropdown on mobile
-                  setActiveDropdown(activeDropdown === link.text ? null : link.text);
-                } else {
-                  // Close mobile menu when clicking a non-dropdown link
-                  setIsMobileMenuOpen(false);
-                  setActiveDropdown(null);
-                }
-              }}
-            >
-              {link.text}
-              {link.hasDropdown && <span className="dropdown-arrow">▾</span>}
-            </a>
+            {renderLink(link, () => {
+              if (link.hasDropdown && window.innerWidth <= 900) {
+                setActiveDropdown(activeDropdown === link.text ? null : link.text);
+              } else {
+                setIsMobileMenuOpen(false);
+                setActiveDropdown(null);
+              }
+            })}
+            {link.hasDropdown && <span className="dropdown-arrow">▾</span>}
             {link.hasDropdown && (activeDropdown === link.text || window.innerWidth <= 900) && (
               <ul className={`dropdown-menu ${activeDropdown === link.text ? 'show' : ''}`}>
                 {link.dropdownItems.map((item) => (
                   <li key={item.text}>
-                    <a 
-                      href={item.href}
-                      target={item.target}
-                      rel={item.target === '_blank' ? 'noopener noreferrer' : undefined}
-                      onClick={() => {
-                        setIsMobileMenuOpen(false);
-                        setActiveDropdown(null);
-                      }}
-                    >
-                      {item.text}
-                    </a>
+                    {renderLink(item, () => {
+                      setIsMobileMenuOpen(false);
+                      setActiveDropdown(null);
+                    })}
                   </li>
                 ))}
               </ul>

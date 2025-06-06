@@ -1,0 +1,397 @@
+:root {
+  --primary: #04352f;
+  --accent: #FF9939;
+  --accent-dark: #E87B1C;  /* Darker shade of accent color */
+  --card-bg: #fff;
+  --footer-bg: #082422;
+  --footer-text: #fff;
+  --border: #e5e7eb;
+  --navbar-height: auto;
+  --navbar-padding: 0.8rem;
+}
+
+.challenge-2025-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  min-height: calc(100vh - var(--navbar-height) - var(--footer-height));
+}
+
+.challenge-2025-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.challenge-2025-header h1 {
+  color: var(--accent);
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.challenge-2025-nav {
+  position: sticky;
+  top: 80px; /* Match navbar height */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 8px;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(8px);
+}
+
+.challenge-2025-nav a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.challenge-2025-nav a:hover {
+  background: var(--accent);
+  color: white;
+}
+
+.challenge-2025-section {
+  scroll-margin-top: calc(80px + 2rem); /* navbar height + extra padding */
+  margin-bottom: 4rem;
+}
+
+.challenge-2025-section h2 {
+  color: var(--accent);
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  letter-spacing: 0.1em;
+}
+
+/* Main text styles */
+.main-text {
+  color: var(--primary);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.main-text p {
+  margin-bottom: 1.2rem;
+}
+
+.main-text a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.main-text a:hover {
+  text-decoration: underline;
+}
+
+.main-text ol {
+  counter-reset: references;
+  list-style: none;
+  padding-left: 2rem;
+}
+
+.main-text ol li {
+  position: relative;
+  margin-bottom: 1.2rem;
+  line-height: 1.6;
+}
+
+.main-text ol li::before {
+  counter-increment: references;
+  content: counter(references) ".";
+  position: absolute;
+  left: -2rem;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.main-text ol li a {
+  color: var(--accent-dark);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border-bottom: 1px solid transparent;
+}
+
+.main-text ol li a:hover {
+  border-bottom-color: var(--accent-dark);
+  text-decoration: none;
+}
+
+/* Card section styles */
+.expandable-sections {
+  margin-top: 2rem;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.expandable-section {
+  margin-bottom: 1rem;
+}
+
+.section-button {
+  width: 100%;
+  padding: 1rem;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--primary);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.section-button:hover {
+  background: var(--primary);
+  color: white;
+}
+
+.section-button:hover .expand-icon {
+  color: white;
+}
+
+.section-button.expanded {
+  background: var(--primary);
+  color: white;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom: none;
+}
+
+.section-button.expanded .expand-icon {
+  color: white;
+}
+
+.expand-icon {
+  font-size: 0.8rem;
+  transition: transform 0.2s ease;
+}
+
+.section-content {
+  padding: 1.5rem;
+  background: white;
+  border: 1px solid var(--border);
+  border-top: none;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  color: var(--primary);
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.section-content p {
+  margin-bottom: 1.2rem;
+}
+
+.section-content a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.section-content a:hover {
+  text-decoration: underline;
+}
+
+.organizers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.organizer-card {
+  text-align: center;
+  padding: 1.5rem;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.organizer-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.organizer-avatar {
+  width: 120px;
+  height: 120px;
+  background: #f0f0f0;
+  border-radius: 50%;
+  margin: 0 auto 1rem;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.organizer-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.organizer-card h3 {
+  color: var(--primary);
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.organizer-card p {
+  color: var(--accent-dark);
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+/* Track section specific styles */
+.track-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+}
+
+.track-list li {
+  margin-bottom: 1rem;
+  padding-left: 1.2rem;
+  position: relative;
+}
+
+.track-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+
+.winner-note {
+  margin-top: 2rem;
+  padding: 1rem;
+  background: rgba(255, 153, 57, 0.05);
+  border-radius: 8px;
+  text-align: center;
+}
+
+/* Dates section specific styles */
+.dates-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.dates-list li {
+  margin-bottom: 1rem;
+  padding-left: 1.2rem;
+  position: relative;
+  line-height: 1.6;
+}
+
+.dates-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+
+.dates-list del {
+  color: #999;
+  text-decoration: line-through;
+  margin: 0 0.2rem;
+}
+
+.time-note {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: rgba(255, 153, 57, 0.05);
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+/* Prizes section specific styles */
+.prizes-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+}
+
+.prizes-list li {
+  margin-bottom: 1.2rem;
+  padding-left: 1.2rem;
+  position: relative;
+  line-height: 1.6;
+}
+
+.prizes-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+
+.presentation-note {
+  margin: 2rem 0;
+  padding: 1rem;
+  background: rgba(255, 153, 57, 0.05);
+  border-radius: 8px;
+  text-align: center;
+  color: var(--accent);
+}
+
+.hosting-team-note {
+  margin-top: 1.5rem;
+  padding: 0.8rem;
+  background: rgba(4, 53, 47, 0.05);
+  border-radius: 8px;
+  text-align: center;
+  font-style: italic;
+  color: var(--primary);
+}
+
+@media (max-width: 768px) {
+  .challenge-2025-header h1 {
+    font-size: 2rem;
+  }
+
+  .challenge-2025-nav {
+    position: static;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+    margin: 1rem -1rem;
+    border-radius: 0;
+  }
+
+  .challenge-2025-nav a {
+    width: 100%;
+    text-align: center;
+  }
+
+  .challenge-2025-section {
+    scroll-margin-top: calc(80px + 1rem); /* Reduced padding on mobile */
+  }
+
+  .organizers-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+  }
+
+  .organizer-avatar {
+    width: 100px;
+    height: 100px;
+  }
+} 
