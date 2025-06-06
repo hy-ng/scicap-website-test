@@ -1,5 +1,5 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import { HashRouter as Router, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import HeroSection from "./components/HeroSection";
 import NewsSection from "./components/NewsSection";
@@ -20,8 +20,16 @@ const HomePage = () => (
 );
 
 function App() {
+  useEffect(() => {
+    // Check if we came from a 404
+    const isNotFound = sessionStorage.getItem('notFoundPage');
+    if (isNotFound) {
+      sessionStorage.removeItem('notFoundPage');
+    }
+  }, []);
+
   return (
-    <Router basename="/">
+    <Router>
       <Navbar />
       <div className="main-wrapper">
         <BackgroundPattern />

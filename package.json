@@ -2,7 +2,7 @@
   "name": "scicap-website-test-0604",
   "private": true,
   "version": "0.0.1",
-  "homepage": "https://sam-ng.net",
+  "homepage": "https://www.scicap.ai",
   "type": "module",
   "scripts": {
     "dev": "vite",

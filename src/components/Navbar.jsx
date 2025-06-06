@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import scicapLogo from "../assets/scicap-logo.png"; //TODO: Change to svg if possible (ask Kenneth if got original file)
 
 const navLinks = [
-  { text: "Home", href: "/", active: true },
+  { text: "Home", href: "", active: true },
   { text: "People", href: "#", inactive: true },
   { text: "Dataset", href: "#", inactive: true },
   { 
@@ -11,7 +11,7 @@ const navLinks = [
     href: "#",
     hasDropdown: true,
     dropdownItems: [
-      { text: "2025", href: "/challenge/2025" },
+      { text: "2025", href: "challenge/2025" },
       { text: "2024", href: "https://gusty-cabbage-7e7.notion.site/The-Second-Scientific-Figure-Captioning-Challenge-SCICAP-Challenge-2024-d9131ae2517640998430fac2271c6e43", target: "_blank" },
       { text: "2023", href: "https://crowdailab.notion.site/The-1st-Scientific-Figure-Captioning-SciCap-Challenge-47b914e092dd4965af7b432f6b2d42e8", target: "_blank" }
     ]
