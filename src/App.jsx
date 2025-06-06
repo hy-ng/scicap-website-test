@@ -20,7 +20,7 @@ const HomePage = () => (
 
 function App() {
   return (
-    <Router>
+    <Router basename="/scicap-website-test">
       <Navbar />
       <div className="main-wrapper">
         <BackgroundPattern />
