@@ -21,7 +21,7 @@ const HomePage = () => (
 
 function App() {
   return (
-    <Router basename="/scicap-website-test">
+    <Router>
       <Navbar />
       <div className="main-wrapper">
         <BackgroundPattern />
