@@ -21,7 +21,7 @@ const HomePage = () => (
 
 function App() {
   return (
-    <Router>
+    <Router basename="/">
       <Navbar />
       <div className="main-wrapper">
         <BackgroundPattern />
