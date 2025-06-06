@@ -2,14 +2,14 @@
   "name": "scicap-website-test-0604",
   "private": true,
   "version": "0.0.1",
-  "homepage": "https://hy-ng.github.io/scicap-website-test",
+  "homepage": "https://samnghoyin.com",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "predeploy": "npm run build",
+    "predeploy": "npm run build &&  copy CNAME dist\\CNAME",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
