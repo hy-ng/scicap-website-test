@@ -2,7 +2,7 @@
   "name": "scicap-website-test-0604",
   "private": true,
   "version": "0.0.1",
-  "homepage": "https://samnghoyin.com",
+  "homepage": "https://sam-ng.net",
   "type": "module",
   "scripts": {
     "dev": "vite",
