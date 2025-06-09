@@ -3,7 +3,42 @@ import React from "react";
 const newsList = [
   {
     date: "Jun 2025",
-    text: "This year, the challenge will be hosted at COLM 2025 (October 7–10, Montreal, Canada). The SciCap Challenge will be held on October 10."
+    text: (
+      <>
+        <p>
+          In this year, the SciCap Challenge will be hosted at{' '}
+          <a
+            href="https://lm4sci.github.io/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="news-link"
+          >
+            LM4Sci Workshop
+          </a>{' '}
+            in{' '}
+          <a
+            href="https://colmweb.org/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="news-link"
+          >
+            COLM 2025
+          </a>{' '}
+          (October 7–10, Montreal, Canada), with the main event on October 10.
+        </p>
+        <p>
+          <strong>Key Dates:</strong>
+        </p>
+        <ul>
+          <li>
+            <strong>August 11 (Monday):</strong> Challenge Submission Deadline (mandatory)
+          </li>
+          <li>
+            <strong>August 15 (Friday):</strong> Technical Report Submission Deadline (mandatory)
+          </li>
+        </ul>
+      </>
+    )
   },
   {
     date: "Nov 2024",
