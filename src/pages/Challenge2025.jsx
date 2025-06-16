@@ -21,11 +21,15 @@ const Challenge2025 = () => {
 
       <nav className="challenge-2025-nav">
         <a href="#overview">Overview</a>
+        {/* Temporarily hidden until content is ready
         <a href="#baseline-models">Baseline Models</a>
         <a href="#how-to-participate">How to Participate</a>
+        */}
         <a href="#references">References</a>
+        {/* Temporarily hidden until content is ready
         <a href="#dataset">Dataset</a>
         <a href="#contact-us">Contact Us</a>
+        */}
         <a href="#organizers">Organizers</a>
       </nav>
 
