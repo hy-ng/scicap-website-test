@@ -158,9 +158,9 @@ const Challenge2025 = () => {
           <p>If you want to refer to the <strong>baseline models and relevant analysis</strong>, please cite the following paper:</p>
           <ol>
             <li>
-              Huang, C. Y., Hsu, T. Y., Rossi, R., Nenkova, A., Kim, S., Chan, G. Y. Y., ... & 
-              Huang, T. H. K. (2023). <a href="https://arxiv.org/abs/2302.12324" target="_blank" rel="noopener noreferrer">Summaries as Captions: Generating Figure Captions for Scientific Documents with Automated Text Summarization</a>. 
-              Proceeding of the 16th International Natural Language Generation Conference (INLG 2023).
+              Ng, H. Y. S., Hsu, T. Y., Ramakrishnan, A. A., Kveton, B., Lipka, N., Dernoncourt, F., ... & 
+              Huang, T. H. K. (2025). <a href="https://arxiv.org/abs/2302.12324" target="_blank" rel="noopener noreferrer"> 
+              LaMP-Cap: Personalized Figure Caption Generation With Multimodal Figure Profiles</a>. arXiv preprint arXiv:2506.06561.
             </li>
           </ol>
 

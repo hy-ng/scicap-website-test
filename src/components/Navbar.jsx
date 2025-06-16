@@ -81,7 +81,7 @@ export default function Navbar() {
       </button>
 
       <ul className={`navbar-links ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
-        {navLinks.map((link) => (
+        {navLinks.filter(link => !link.inactive).map((link) => (
           <li 
             key={link.text}
             className={link.hasDropdown ? 'has-dropdown' : ''}
