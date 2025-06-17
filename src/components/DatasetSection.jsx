@@ -3,7 +3,7 @@ import React from "react";
 const datasetList = [
   {
     title: "LaMP-CAP (2025)",
-    desc: "A dataset of over 300,000 figures from more than 110,000 scientific papers, curated for personalized caption generation with multimodal figure profiles.",
+    desc: "Built based on SciCap Challenge dataset containing over 300,000 figures from 110,000+ scientific papers, designed for personalized caption generation using multimodal figure profiles.",
     links: {
       paper: "https://arxiv.org/abs/2506.06561",
       dataset: "https://github.com/Crowd-AI-Lab/lamp-cap"
