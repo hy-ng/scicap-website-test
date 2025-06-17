@@ -548,7 +548,7 @@ snapshot_download(repo_id="CrowdAILab/scicap", repo_type='dataset')`}
           <p>If you want to refer to the <strong>baseline models and relevant analysis</strong>, please cite the following paper:</p>
           <ol>
             <li>
-              Ng, H. Y. S., Hsu, T. Y., Ramakrishnan, A. A., Kveton, B., Lipka, N., Dernoncourt, F., ... & 
+              Ng, H. Y. S., Hsu, T. Y., Anantha Ramakrishnan, A., Kveton, B., Lipka, N., Dernoncourt, F., ... & 
               Huang, T. H. K. (2025). <a href="https://arxiv.org/abs/2302.12324" target="_blank" rel="noopener noreferrer"> 
               LaMP-Cap: Personalized Figure Caption Generation With Multimodal Figure Profiles</a>. arXiv preprint arXiv:2506.06561.
             </li>
