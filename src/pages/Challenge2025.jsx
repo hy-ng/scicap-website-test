@@ -83,6 +83,22 @@ const Challenge2025 = () => {
               <div className="section-content">
                 <p>
                 The challenge will feature a single track to encourage innovation in personalized caption generation for scientific figures and images. 
+                This round of challenge will follow the LaMP-CAP paper, in which the teams can not only use typical inputs (figure images and figure-mentioning paragraphs) but also <strong>OTHER FIGURES AND THEIR CAPTIONS</strong> in the same paper to help personalization.
+                </p>
+                
+                <p>
+                <strong>Target Figure:</strong> The figure for which we want to generate a personalized caption.
+                </p>
+                
+                <p>
+                <strong>Profile Figures:</strong> Other figures from the same scientific paper that can be used to understand the author's writing style and preferences for caption generation.
+                </p>
+                
+                <p>
+                <strong>We strongly recommend</strong> each team to read our <a href="https://arxiv.org/abs/2506.06561" target="_blank" rel="noopener noreferrer">arXiv paper</a> before beginning to tackle this task.
+                </p>
+                
+                <p>
                 Teams can submit multiple results during the submission period. Teams will be allowed to use LLMs like GPT-4V and any external data for their captioning systems. 
                 </p>
                 <p>
@@ -136,12 +152,16 @@ const Challenge2025 = () => {
                     <strong>Leaderboard Winner ($300 USD):</strong> The Winner will be determined by the <strong>highest ROUGE-L score</strong> on the whole test set, as shown on the EvalAI leaderboard.
                   </li>
                   <li>
-                    <strong>Quality Winner ($300 USD):</strong> The Winner will be determined by the best human evaluation score from a <strong>human-curated subset of the test set</strong>. More details would be announced later.
+                    <strong>Quality Winner ($300 USD):</strong> The Winner will be determined by the best human evaluation score from a subset of the test set. We will use a subset of the test set for human evaluation due to the limited human judges available. More details would be announced later.
                   </li>
                 </ul>
 
                 <p className="presentation-note">
-                  <strong>The winning teams will be invited for poster presentation in the challenge.</strong>
+                  <strong>The top 4 teams on the leaderboard (including the Leaderboard Winner and the next 3 highest scoring teams), as well as the Quality Winner, will be invited to present their posters in person at the workshop.</strong>
+                </p>
+
+                <p className="registration-note">
+                  <strong>Important:</strong> Each participating team is responsible for securing their own registration tickets for the COLM 2025 conference and workshop. Given that tickets sold out last year at COLM, we cannot guarantee that each team (even the winning team) will be able to register for COLM 2025 successfully. This responsibility lies entirely with the participating teams.
                 </p>
 
                 <p>
@@ -166,8 +186,10 @@ const Challenge2025 = () => {
         <div className="main-text">
           <p>To be considered for awards, you must:</p>
           <ol>
-            <li>Submit your output for the hidden test set via Eval.AI before the deadline, and</li>
-            <li>Provide a report, 2-4 pages in length, detailing your system. Please use the COLM 2025 paper template for your submission.</li>
+            <li>Submit your output for the test set via Eval.AI before the deadline, and</li>
+            <li>Provide a report, 2-4 pages in length, detailing your system. Please use the COLM 2025 paper template for your submission.
+              (The Google Form for technical report submission (due on Aug 15) will be made available here when the deadline approaches.)
+            </li>
           </ol>
         </div>
 
@@ -245,6 +267,7 @@ const Challenge2025 = () => {
             {expandedSections.includes('technical-report') && (
               <div className="section-content">
                 <p>Every team must submit a report, ranging from 2-4 pages, that provides an in-depth overview of their system. This should encompass data processing, methodologies, experimental results, etc. Please adhere to the COLM 2025 paper template for your submission.</p>
+                <p><em>The Google Form for technical report submission (due on Aug 15) will be made available here when the deadline approaches.</em></p>
               </div>
             )}
           </div>
@@ -301,23 +324,15 @@ const Challenge2025 = () => {
         <div className="expandable-sections">
           <div className="expandable-section">
             <button 
-              className={`section-button ${expandedSections.includes('data-overview') ? 'expanded' : ''}`}
-              onClick={() => toggleSection('data-overview')}
+              className={`section-button ${expandedSections.includes('lamp-cap-dataset') ? 'expanded' : ''}`}
+              onClick={() => toggleSection('lamp-cap-dataset')}
             >
-              Data Overview
-              <span className="expand-icon">{expandedSections.includes('data-overview') ? '▼' : '▲'}</span>
+              LaMP-CAP Dataset
+              <span className="expand-icon">{expandedSections.includes('lamp-cap-dataset') ? '▼' : '▲'}</span>
             </button>
-            {expandedSections.includes('data-overview') && (
+            {expandedSections.includes('lamp-cap-dataset') && (
               <div className="section-content">
                 <p>Our LaMP-CAP is an extension of the SciCap Challenge dataset, with a new focus on personalized and context-aware scientific figure captioning. Unlike traditional caption datasets, LaMP-Cap provides not only target figures and their metadata, but also profile figures from the same scientific paper, enabling research into leveraging multimodal context for improved captioning. Metadata is available in our <a href="https://github.com/Crowd-AI-Lab/lamp-cap" target="_blank" rel="noopener noreferrer">GitHub repository</a>.</p>
-
-                <p>For this challenge, participants should also refer to the original SciCap Challenge dataset, which has been updated with public and hidden test sets. For each figure, the following is provided:</p>
-
-                <ul className="data-list">
-                  <li>Figure <strong>image</strong> (extracted from the original arXiv paper)</li>
-                  <li>Figure <strong>caption</strong> (extracted from the original arXiv paper)</li>
-                  <li><strong>Paragraphs</strong> that mention the figure (extracted from the original arXiv paper, e.g., "As shown in Figure 5, …".)</li>
-                </ul>
 
                 <p className="technical-note">
                   <em>Note:</em> Only a subset of the public and hidden test sets is used in LaMP-CAP. Specifically, we include only arXiv papers that contain at least two figures from the same paper, which are required to construct target-profile pairs. The details can be checked in our <a href="https://arxiv.org/abs/2506.06561" target="_blank" rel="noopener noreferrer">paper</a> and <a href="https://github.com/Crowd-AI-Lab/lamp-cap" target="_blank" rel="noopener noreferrer">GitHub repository</a>.
@@ -328,14 +343,25 @@ const Challenge2025 = () => {
 
           <div className="expandable-section">
             <button 
-              className={`section-button ${expandedSections.includes('huggingface') ? 'expanded' : ''}`}
-              onClick={() => toggleSection('huggingface')}
+              className={`section-button ${expandedSections.includes('scicap-challenge-dataset') ? 'expanded' : ''}`}
+              onClick={() => toggleSection('scicap-challenge-dataset')}
             >
-              Get the SciCap Challenge Dataset via Hugging Face
-              <span className="expand-icon">{expandedSections.includes('huggingface') ? '▼' : '▲'}</span>
+              SciCap Challenge Dataset (That LaMP-CAP is Based On)
+              <span className="expand-icon">{expandedSections.includes('scicap-challenge-dataset') ? '▼' : '▲'}</span>
             </button>
-            {expandedSections.includes('huggingface') && (
+            {expandedSections.includes('scicap-challenge-dataset') && (
               <div className="section-content">
+                <p>For this challenge, participants should also refer to the original SciCap Challenge dataset, which has been updated with public and hidden test sets. For each figure, the following is provided.</p>
+
+                <ul className="data-list">
+                  <li>Figure <strong>image</strong> (extracted from the original arXiv paper)</li>
+                  <li>Figure <strong>caption</strong> (extracted from the original arXiv paper)</li>
+                  <li><strong>Paragraphs</strong> that mention the figure (extracted from the original arXiv paper, e.g., "As shown in Figure 5, …".)</li>
+                </ul>
+
+                <p>More detailed information about the data format can be found in the "Example Data Format" section below.</p>
+
+                <h4>Getting the Dataset</h4>
                 <p>You can download the dataset from our <a href="https://huggingface.co/datasets/Crowd-AI-Lab/scicap" target="_blank" rel="noopener noreferrer">Hugging Face</a> dataset with the python command.</p>
 
                 <div className="code-block">
@@ -353,20 +379,7 @@ snapshot_download(repo_id="CrowdAILab/scicap", repo_type='dataset')`}
                   </pre>
                 </div>
 
-              </div>
-            )}
-          </div>
-
-          <div className="expandable-section">
-            <button 
-              className={`section-button ${expandedSections.includes('folder-structure') ? 'expanded' : ''}`}
-              onClick={() => toggleSection('folder-structure')}
-            >
-              Data Folder Structure (SciCap Challenge Dataset)
-              <span className="expand-icon">{expandedSections.includes('folder-structure') ? '▼' : '▲'}</span>
-            </button>
-            {expandedSections.includes('folder-structure') && (
-              <div className="section-content">
+                <h4>Data Folder Structure</h4>
                 <p>SciCap Challenge dataset schema is very close to the widely popular <strong>'mscoco'</strong> dataset.</p>
 
                 <ul className="data-list">
@@ -412,7 +425,8 @@ snapshot_download(repo_id="CrowdAILab/scicap", repo_type='dataset')`}
                     </ul>
                   </li>
                 </ul>
-                <p>Example</p>
+
+                <h4>Example Data Format</h4>
                 <div className="code-block">
                   <pre className="json-format">
 {`{
@@ -450,20 +464,8 @@ snapshot_download(repo_id="CrowdAILab/scicap", repo_type='dataset')`}
 }`}
                   </pre>
                 </div>
-              </div>
-            )}
-          </div>
 
-          <div className="expandable-section">
-            <button 
-              className={`section-button ${expandedSections.includes('metadata') ? 'expanded' : ''}`}
-              onClick={() => toggleSection('metadata')}
-            >
-              Additional Meta Data (SciCap Challenge Dataset)
-              <span className="expand-icon">{expandedSections.includes('metadata') ? '▼' : '▲'}</span>
-            </button>
-            {expandedSections.includes('metadata') && (
-              <div className="section-content">
+                <h4>Additional Metadata</h4>
                 <p>The following additional metadata information is provided by SciCap challenge dataset for reference. Further details are provided about the figures (<strong>ArXiv ID</strong> and <strong>category</strong>, only for the <strong>train/val/test set</strong>) and text information (<strong>caption length</strong>, excluding figure index).</p>
 
                 <div className="code-block">
@@ -524,7 +526,7 @@ snapshot_download(repo_id="CrowdAILab/scicap", repo_type='dataset')`}
             </button>
             {expandedSections.includes('human-eval') && (
               <div className="section-content">
-                <p>TBC</p>
+                <p>We will use a subset of the test set for human evaluation due to the limited human judges available. More details would be announced later.</p>
               </div>
             )}
           </div>
@@ -539,6 +541,7 @@ snapshot_download(repo_id="CrowdAILab/scicap", repo_type='dataset')`}
             <li>No Profile - GPT-4o</li>
             <li>ALL Profile - GPT-4o</li>
           </ul>
+          <p>Please go to read our <a href="https://arxiv.org/abs/2506.06561" target="_blank" rel="noopener noreferrer">paper</a> for more implementation details.</p>
         </div>
       </section>
 
@@ -549,7 +552,7 @@ snapshot_download(repo_id="CrowdAILab/scicap", repo_type='dataset')`}
           <ol>
             <li>
               Ng, H. Y. S., Hsu, T. Y., Anantha Ramakrishnan, A., Kveton, B., Lipka, N., Dernoncourt, F., ... & 
-              Huang, T. H. K. (2025). <a href="https://arxiv.org/abs/2302.12324" target="_blank" rel="noopener noreferrer"> 
+              Huang, T. H. K. (2025). <a href="https://arxiv.org/abs/2506.06561" target="_blank" rel="noopener noreferrer"> 
               LaMP-Cap: Personalized Figure Caption Generation With Multimodal Figure Profiles</a>. arXiv preprint arXiv:2506.06561.
             </li>
           </ol>
