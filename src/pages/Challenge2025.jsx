@@ -41,7 +41,7 @@ const Challenge2025 = () => {
         <div className="main-text">
           <p>Welcome to the Third Scientific Figure Captioning Challenge (SciCap Challenge 2025)! This year, we're excited to introduce a new focus on personalized caption generation using our latest LaMP-CAP dataset, which features over 300,000 figures from more than 110,000 scientific papers, curated specifically for personalized caption generation with multimodal figure profiles.</p>
           
-          <p>Our challenge this year aims to advance the field of scientific figure understanding by developing AI models that can generate captions that adapt to researchers' unique writing styles and domain contexts. Using the LaMP-CAP dataset, participants will build computational models that can learn from and emulate different writing patterns, incorporate domain-specific knowledge, and consider other contextual factors that contribute to creating more effective and personalized scientific captions.</p>
+          <p>This challenge focuses on generating personalized captions for scientific figures. Participants will build AI models that generate captions tailored to different writing styles and research domains, using the LaMP-CAP dataset. The goal is to create systems that can adapt to various author styles and scientific contexts for more effective and personalized figure captions.</p>
 
           <p>The challenge will be hosted at the LM4Sci Workshop in COLM 2025 (October 7-10, Montreal, Canada). We invite researchers, students, industry practitioners, AI/NLP/CV experts, and anyone interested in advancing personalized scientific communication to participate!</p>
 
