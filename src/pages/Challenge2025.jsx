@@ -643,7 +643,7 @@ snapshot_download(repo_id="CrowdAILab/scicap", repo_type='dataset')`}
             <div className="organizer-avatar">
               <img src={aashishPhoto} alt="Aashish Anantha Ramakrishnan" />
             </div>
-            <h3>Aashish, Anantha Ramakrishnan</h3>
+            <h3>Aashish Anantha Ramakrishnan</h3>
             <p>Pennsylvania State University</p>
             <a
               href="https://aashish2000.github.io/"
