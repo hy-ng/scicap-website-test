@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 
 const newsList = [
   {
@@ -37,6 +38,10 @@ const newsList = [
             <strong>August 15 (Friday):</strong> Technical Report Submission Deadline (mandatory)
           </li>
         </ul>
+        <p>
+          More details of the SciCap Challenge 2025 can be found{' '}
+          <Link to="/challenge/2025">here</Link>.
+        </p>
       </>
     )
   },

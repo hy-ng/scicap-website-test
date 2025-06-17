@@ -5,6 +5,7 @@ import leaderboardPhoto from '../assets/SciCap25-info/leaderboard_SciCapChalleng
 import aashishPhoto from '../assets/member/SciCap25/AnanthaRamakrishnan-Aashish.jpg';
 import kennethPhoto from '../assets/member/SciCap25/kennethHuang.jpg';
 import edwardPhoto from '../assets/member/SciCap25/edwardHsu.jpg';
+import { HashLink } from 'react-router-hash-link';
 
 
 const Challenge2025 = () => {
@@ -25,14 +26,14 @@ const Challenge2025 = () => {
       </div>
 
       <nav className="challenge-2025-nav">
-        <a href="#overview">Overview</a>
-        <a href="#how-to-participate">How to Participate</a>
-        <a href="#dataset">Dataset</a>
-        <a href="#evaluation">Evaluation</a>
-        <a href="#baseline">Baseline</a>
-        <a href="#references">References</a>
-        <a href="#contact-us">Contact Us</a>
-        <a href="#organizers">Organizers</a>
+        <HashLink smooth to="/challenge/2025#overview">Overview</HashLink>
+        <HashLink smooth to="/challenge/2025#how-to-participate">How to Participate</HashLink>
+        <HashLink smooth to="/challenge/2025#dataset">Dataset</HashLink>
+        <HashLink smooth to="/challenge/2025#evaluation">Evaluation</HashLink>
+        <HashLink smooth to="/challenge/2025#baseline">Baseline</HashLink>
+        <HashLink smooth to="/challenge/2025#references">References</HashLink>
+        <HashLink smooth to="/challenge/2025#contact-us">Contact Us</HashLink>
+        <HashLink smooth to="/challenge/2025#organizers">Organizers</HashLink>
       </nav>
 
       <section id="overview" className="challenge-2025-section">

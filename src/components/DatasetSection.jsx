@@ -6,7 +6,7 @@ const datasetList = [
     desc: "A dataset of over 300,000 figures from more than 110,000 scientific papers, curated for personalized caption generation with multimodal figure profiles.",
     links: {
       paper: "https://arxiv.org/abs/2506.06561",
-      dataset: "#"
+      dataset: "https://github.com/Crowd-AI-Lab/lamp-cap"
     }
   },
   {

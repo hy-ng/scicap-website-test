@@ -10,6 +10,8 @@ import NoPage from "./pages/NoPage";
 import "./App.css";
 import "./styles/Challenge2025.css";
 import BackgroundPattern from "./components/BackgroundPattern"; // Uncomment if you add it
+import { HashLink } from 'react-router-hash-link';
+import { Link } from 'react-router-dom';
 
 const HomePage = () => (
   <main>
