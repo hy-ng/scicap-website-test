@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import samNgPhoto from '../assets/member/Ng-Sam.jpg';
 import defaultUserPhoto from '../assets/member/user-head.png';
 import leaderboardPhoto from '../assets/SciCap25-info/leaderboard_SciCapChallenge2025.png';
@@ -10,6 +10,9 @@ import { HashLink } from 'react-router-hash-link';
 
 const Challenge2025 = () => {
   const [expandedSections, setExpandedSections] = useState(['tracks', 'dates', 'criteria']);
+  const [currentSection, setCurrentSection] = useState('overview');
+  const [centeringTimeout, setCenteringTimeout] = useState(null);
+  const [isCentering, setIsCentering] = useState(false);
 
   const toggleSection = (section) => {
     setExpandedSections(prev => 
@@ -19,6 +22,356 @@ const Challenge2025 = () => {
     );
   };
 
+  // Debounced centering function
+  const debouncedCenterActiveSection = () => {
+    if (centeringTimeout) {
+      clearTimeout(centeringTimeout);
+    }
+    
+    const timeout = setTimeout(() => {
+      centerActiveSection();
+    }, 100); // Reduced delay for better responsiveness during scrolling
+    
+    setCenteringTimeout(timeout);
+  };
+
+  // Immediate centering function for better responsiveness
+  const immediateCenterActiveSection = () => {
+    if (centeringTimeout) {
+      clearTimeout(centeringTimeout);
+    }
+    centerActiveSection();
+  };
+
+  // Force center function for middle sections
+  const forceCenterActiveSection = () => {
+    // Prevent multiple centering operations from running simultaneously
+    if (isCentering) return;
+    
+    setIsCentering(true);
+    
+    const activeLink = document.querySelector(`.challenge-2025-nav a[href*="#${currentSection}"]`);
+    const navScroll = document.querySelector('.challenge-2025-nav-scroll');
+    
+    if (activeLink && navScroll && window.innerWidth <= 768) {
+      // Force centering for mobile
+      requestAnimationFrame(() => {
+        const navWidth = navScroll.clientWidth;
+        const linkWidth = activeLink.offsetWidth;
+        const linkLeft = activeLink.offsetLeft;
+        
+        // Calculate center position without considering current scroll
+        const navCenter = navWidth / 2;
+        const linkCenter = linkWidth / 2;
+        const targetScrollLeft = linkLeft - navCenter + linkCenter;
+        
+        const maxScrollLeft = navScroll.scrollWidth - navScroll.clientWidth;
+        const finalScrollLeft = Math.max(0, Math.min(targetScrollLeft, maxScrollLeft));
+        
+        // Use smooth scrolling with custom easing
+        smoothScrollTo(navScroll, finalScrollLeft, 400);
+        
+        // Reset centering flag after animation
+        setTimeout(() => setIsCentering(false), 450);
+      });
+    } else if (activeLink && window.innerWidth > 768) {
+      // Force centering for desktop
+      requestAnimationFrame(() => {
+        activeLink.scrollIntoView({
+          behavior: 'smooth',
+          block: 'nearest',
+          inline: 'center'
+        });
+        
+        // Reset centering flag after animation
+        setTimeout(() => setIsCentering(false), 450);
+      });
+    } else {
+      setIsCentering(false);
+    }
+  };
+
+  // Center active section in mobile nav
+  const centerActiveSection = () => {
+    // Check if we're on mobile (has scrollable container)
+    const navScroll = document.querySelector('.challenge-2025-nav-scroll');
+    const activeLink = document.querySelector(`.challenge-2025-nav a[href*="#${currentSection}"]`);
+    
+    if (navScroll && activeLink && window.innerWidth <= 768) {
+      // Mobile: always center in scrollable container
+      requestAnimationFrame(() => {
+        const navWidth = navScroll.clientWidth;
+        const linkWidth = activeLink.offsetWidth;
+        const linkLeft = activeLink.offsetLeft;
+        
+        // Calculate center position without considering current scroll to prevent feedback loop
+        const navCenter = navWidth / 2;
+        const linkCenter = linkWidth / 2;
+        const targetScrollLeft = linkLeft - navCenter + linkCenter;
+        
+        const maxScrollLeft = navScroll.scrollWidth - navScroll.clientWidth;
+        const finalScrollLeft = Math.max(0, Math.min(targetScrollLeft, maxScrollLeft));
+        
+        // Only scroll if the target position is significantly different to prevent jitter
+        if (Math.abs(navScroll.scrollLeft - finalScrollLeft) > 5) {
+          // Use smooth scrolling with custom easing
+          smoothScrollTo(navScroll, finalScrollLeft, 400);
+        }
+      });
+    } else if (activeLink && window.innerWidth > 768) {
+      // Desktop: always center the active link
+      requestAnimationFrame(() => {
+        // Always scroll into view, regardless of current visibility
+        activeLink.scrollIntoView({
+          behavior: 'smooth',
+          block: 'nearest',
+          inline: 'center'
+        });
+      });
+    }
+  };
+
+  // Smooth scroll function with custom easing
+  const smoothScrollTo = (element, target, duration = 400) => {
+    const start = element.scrollLeft;
+    const change = target - start;
+    const startTime = performance.now();
+    
+    // Easing function: ease-out-cubic
+    const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+    
+    const animateScroll = (currentTime) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      
+      element.scrollLeft = start + change * easeOutCubic(progress);
+      
+      if (progress < 1) {
+        requestAnimationFrame(animateScroll);
+      }
+    };
+    
+    requestAnimationFrame(animateScroll);
+  };
+
+  // Center clicked navigation item
+  const centerClickedItem = (event) => {
+    const clickedLink = event.currentTarget;
+    
+    // Check if we're on mobile (has scrollable container)
+    const navScroll = document.querySelector('.challenge-2025-nav-scroll');
+    
+    if (navScroll && window.innerWidth <= 768) {
+      // Mobile: always center in scrollable container
+      requestAnimationFrame(() => {
+        const navWidth = navScroll.clientWidth;
+        const linkWidth = clickedLink.offsetWidth;
+        const linkLeft = clickedLink.offsetLeft;
+        
+        // Calculate center position without considering current scroll
+        const navCenter = navWidth / 2;
+        const linkCenter = linkWidth / 2;
+        const targetScrollLeft = linkLeft - navCenter + linkCenter;
+        
+        const maxScrollLeft = navScroll.scrollWidth - navScroll.clientWidth;
+        const finalScrollLeft = Math.max(0, Math.min(targetScrollLeft, maxScrollLeft));
+        
+        // Use smooth scrolling with custom easing
+        smoothScrollTo(navScroll, finalScrollLeft, 400);
+      });
+    } else if (window.innerWidth > 768) {
+      // Desktop: always center the clicked link
+      requestAnimationFrame(() => {
+        // Always scroll into view, regardless of current visibility
+        clickedLink.scrollIntoView({
+          behavior: 'smooth',
+          block: 'nearest',
+          inline: 'center'
+        });
+      });
+    }
+  };
+
+  // Add scroll listener for mobile nav
+  useEffect(() => {
+    const navScroll = document.querySelector('.challenge-2025-nav-scroll');
+    const navContainer = document.querySelector('.challenge-2025-nav');
+    
+    if (navContainer) {
+      // Center active section on initial load with longer delay
+      setTimeout(centerActiveSection, 300);
+      
+      // Also center when the DOM structure changes (mobile/desktop switch)
+      const resizeObserver = new ResizeObserver(() => {
+        setTimeout(centerActiveSection, 100);
+      });
+      
+      resizeObserver.observe(navContainer);
+      
+      // Cleanup timeout on unmount
+      return () => {
+        if (centeringTimeout) {
+          clearTimeout(centeringTimeout);
+        }
+        resizeObserver.disconnect();
+      };
+    }
+  }, []);
+
+  // Handle window resize for mobile nav centering
+  useEffect(() => {
+    const handleResize = () => {
+      // Trigger centering on resize for all screen sizes
+      debouncedCenterActiveSection();
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [centeringTimeout]);
+
+  // Center active section when currentSection changes
+  useEffect(() => {
+    // Use force centering for better reliability, especially for middle sections
+    setTimeout(() => forceCenterActiveSection(), 150);
+  }, [currentSection]);
+
+  // Intersection Observer to track current section
+  useEffect(() => {
+    const sectionIds = [
+      'overview',
+      'how-to-participate',
+      'dataset',
+      'evaluation',
+      'baseline',
+      'references',
+      'contact-us',
+      'organizers'
+    ];
+
+    // Check if Intersection Observer is supported
+    if (!window.IntersectionObserver) {
+      console.warn('Intersection Observer not supported');
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        console.log('Intersection Observer entries:', entries.map(entry => ({
+          id: entry.target.id,
+          isIntersecting: entry.isIntersecting,
+          intersectionRatio: entry.intersectionRatio,
+          boundingClientRect: entry.boundingClientRect
+        })));
+        
+        const visible = entries
+          .filter(entry => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        
+        if (visible.length > 0) {
+          const newSection = visible[0].target.id;
+          // Only update if the section actually changed
+          if (newSection !== currentSection) {
+            console.log('Current section:', newSection); // Debug log
+            setCurrentSection(newSection);
+            // Use force centering for better reliability with middle sections
+            setTimeout(() => forceCenterActiveSection(), 100);
+          }
+        }
+      },
+      { 
+        rootMargin: '-100px 0px -30% 0px', // Adjusted for better middle section detection
+        threshold: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9] // More granular thresholds
+      }
+    );
+
+    // Observe all sections
+    sectionIds.forEach(id => {
+      const element = document.getElementById(id);
+      if (element) {
+        observer.observe(element);
+        console.log('Observing section:', id, 'Element found:', !!element); // Debug log
+      } else {
+        console.warn('Section not found:', id); // Debug log
+      }
+    });
+
+    // Fallback scroll-based tracking
+    const handleScrollFallback = () => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const windowHeight = window.innerHeight;
+      const offset = 150; // Offset from top
+
+      // Find which section is currently in view
+      for (let i = sectionIds.length - 1; i >= 0; i--) {
+        const element = document.getElementById(sectionIds[i]);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          const elementTop = rect.top + scrollTop;
+          
+          if (scrollTop + offset >= elementTop) {
+            if (currentSection !== sectionIds[i]) {
+              console.log('Scroll fallback - Current section:', sectionIds[i]);
+              setCurrentSection(sectionIds[i]);
+              // Immediately center the new active section
+              setTimeout(() => immediateCenterActiveSection(), 50);
+            }
+            break;
+          }
+        }
+      }
+    };
+
+    // Add scroll listener as fallback
+    window.addEventListener('scroll', handleScrollFallback);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('scroll', handleScrollFallback);
+      // Cleanup centering timeout
+      if (centeringTimeout) {
+        clearTimeout(centeringTimeout);
+      }
+    };
+  }, [currentSection, centeringTimeout]);
+
+  // Simple fixed positioning for the nav bar
+  useEffect(() => {
+    const nav = document.querySelector('.challenge-2025-nav');
+    if (!nav) return;
+
+    const handleScroll = () => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const header = document.querySelector('.challenge-2025-header');
+      
+      if (header && scrollTop > header.offsetTop + header.offsetHeight) {
+        // Add transition class first, then fixed class
+        if (!nav.classList.contains('nav-fixed')) {
+          nav.classList.add('nav-transitioning');
+          setTimeout(() => {
+            nav.classList.add('nav-fixed');
+            nav.classList.remove('nav-transitioning');
+          }, 10);
+        }
+      } else {
+        // More subtle transition out when scrolling back up
+        if (nav.classList.contains('nav-fixed')) {
+          // Use a fade-out effect instead of position transition
+          nav.style.opacity = '0.8';
+          nav.style.transform = 'translateX(-50%) translateY(-10px)';
+          
+          setTimeout(() => {
+            nav.classList.remove('nav-fixed');
+            nav.style.opacity = '';
+            nav.style.transform = '';
+          }, 150);
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <div className="challenge-2025-page">
       <div className="challenge-2025-header">
@@ -26,14 +379,75 @@ const Challenge2025 = () => {
       </div>
 
       <nav className="challenge-2025-nav">
-        <HashLink smooth to="/challenge/2025#overview">Overview</HashLink>
-        <HashLink smooth to="/challenge/2025#how-to-participate">How to Participate</HashLink>
-        <HashLink smooth to="/challenge/2025#dataset">Dataset</HashLink>
-        <HashLink smooth to="/challenge/2025#evaluation">Evaluation</HashLink>
-        <HashLink smooth to="/challenge/2025#baseline">Baseline</HashLink>
-        <HashLink smooth to="/challenge/2025#references">References</HashLink>
-        <HashLink smooth to="/challenge/2025#contact-us">Contact Us</HashLink>
-        <HashLink smooth to="/challenge/2025#organizers">Organizers</HashLink>
+        <div className="challenge-2025-nav-container">
+          {/* Scrollable navigation area */}
+          <div className="challenge-2025-nav-scroll">
+            <HashLink 
+              smooth 
+              to="/challenge/2025#overview"
+              className={currentSection === 'overview' ? 'active' : ''}
+              onClick={centerClickedItem}
+            >
+              Overview
+            </HashLink>
+            <HashLink 
+              smooth 
+              to="/challenge/2025#how-to-participate"
+              className={currentSection === 'how-to-participate' ? 'active' : ''}
+              onClick={centerClickedItem}
+            >
+              How to Participate
+            </HashLink>
+            <HashLink 
+              smooth 
+              to="/challenge/2025#dataset"
+              className={currentSection === 'dataset' ? 'active' : ''}
+              onClick={centerClickedItem}
+            >
+              Dataset
+            </HashLink>
+            <HashLink 
+              smooth 
+              to="/challenge/2025#evaluation"
+              className={currentSection === 'evaluation' ? 'active' : ''}
+              onClick={centerClickedItem}
+            >
+              Evaluation
+            </HashLink>
+            <HashLink 
+              smooth 
+              to="/challenge/2025#baseline"
+              className={currentSection === 'baseline' ? 'active' : ''}
+              onClick={centerClickedItem}
+            >
+              Baseline
+            </HashLink>
+            <HashLink 
+              smooth 
+              to="/challenge/2025#references"
+              className={currentSection === 'references' ? 'active' : ''}
+              onClick={centerClickedItem}
+            >
+              References
+            </HashLink>
+            <HashLink 
+              smooth 
+              to="/challenge/2025#contact-us"
+              className={currentSection === 'contact-us' ? 'active' : ''}
+              onClick={centerClickedItem}
+            >
+              Contact Us
+            </HashLink>
+            <HashLink 
+              smooth 
+              to="/challenge/2025#organizers"
+              className={currentSection === 'organizers' ? 'active' : ''}
+              onClick={centerClickedItem}
+            >
+              Organizers
+            </HashLink>
+          </div>
+        </div>
       </nav>
 
       <section id="overview" className="challenge-2025-section">

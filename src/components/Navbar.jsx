@@ -39,6 +39,16 @@ export default function Navbar() {
     };
   }, []);
 
+  // Function to handle menu item clicks and collapse mobile menu
+  const handleMenuItemClick = () => {
+    if (window.innerWidth <= 900) {
+      // Add a small delay to allow the transition to complete smoothly
+      setTimeout(() => {
+        setIsMobileMenuOpen(false);
+      }, 100);
+    }
+  };
+
   const renderLink = (item) => {
     if (item.target === '_blank' || item.href.startsWith('http')) {
       return (
@@ -47,6 +57,7 @@ export default function Navbar() {
           target={item.target}
           rel={item.target === '_blank' ? 'noopener noreferrer' : undefined}
           className={item.inactive ? 'inactive' : ''}
+          onClick={handleMenuItemClick}
         >
           {item.text}{item.hasDropdown && <span className="dropdown-arrow">▸</span>}
         </a>
@@ -56,6 +67,7 @@ export default function Navbar() {
       <Link
         to={item.href}
         className={item.inactive ? 'inactive' : ''}
+        onClick={handleMenuItemClick}
       >
         {item.text}{item.hasDropdown && <span className="dropdown-arrow">▸</span>}
       </Link>
@@ -91,7 +103,23 @@ export default function Navbar() {
               <ul className="dropdown-menu">
                 {link.dropdownItems.map((item) => (
                   <li key={item.text}>
-                    {renderLink(item)}
+                    {item.target === '_blank' || item.href.startsWith('http') ? (
+                      <a
+                        href={item.href}
+                        target={item.target}
+                        rel={item.target === '_blank' ? 'noopener noreferrer' : undefined}
+                        onClick={handleMenuItemClick}
+                      >
+                        {item.text}
+                      </a>
+                    ) : (
+                      <Link
+                        to={item.href}
+                        onClick={handleMenuItemClick}
+                      >
+                        {item.text}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>
