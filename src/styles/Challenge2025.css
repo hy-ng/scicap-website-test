@@ -167,9 +167,26 @@
     gap: 1.5rem;
   }
 
+  .challenge-2025-nav-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between; /* Even distribution across container */
+  }
+
+  .challenge-2025-nav-scroll {
+    display: flex;
+    width: 100%;
+    justify-content: space-between; /* Even distribution */
+    gap: 1rem; /* Add spacing between items */
+    padding: 0 2rem; /* Add white space on left and right sides */
+  }
+
   .challenge-2025-nav a {
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
+    padding: 0.5rem 0.8rem; /* Reduced horizontal padding to make buttons narrower */
+    font-size: 1rem; /* Keep text size the same */
+    flex: 1; /* Equal width for each item */
+    text-align: center; /* Center text within each item */
+    white-space: nowrap; /* Prevent text wrapping */
   }
 }
 
