@@ -673,7 +673,7 @@ main {
 
   .navbar-links {
     position: fixed;
-    top: 80px;
+    top: 135px;
     left: 0;
     right: 0;
     background: var(--primary);
