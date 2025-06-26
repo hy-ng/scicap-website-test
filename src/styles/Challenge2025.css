@@ -188,6 +188,14 @@
     text-align: center; /* Center text within each item */
     white-space: nowrap; /* Prevent text wrapping */
   }
+
+  .challenge-2025-nav.nav-fixed {
+    top: 100px !important; /* Higher position for large screens */
+  }
+  
+  .challenge-2025-nav.nav-transitioning {
+    top: 100px !important; /* Higher position for large screens */
+  }
 }
 
 .challenge-2025-section {
