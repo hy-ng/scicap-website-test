@@ -566,7 +566,7 @@ const Challenge2025 = () => {
                     <strong>Leaderboard Winner ($300 USD):</strong> The Winner will be determined by the <strong>highest ROUGE-L score</strong> on the whole test set, as shown on the EvalAI leaderboard.
                   </li>
                   <li>
-                    <strong>Quality Winner ($300 USD):</strong> The Winner will be determined by the best human evaluation score from a subset of the test set. We will use a subset of the test set for human evaluation due to the limited human judges available. More details would be announced later.
+                    <strong>Quality Winner ($300 USD):</strong> The Winner will be determined by the best average human ranking from a subset of the test set. See the Evaluation section for details.
                   </li>
                 </ul>
 
@@ -940,7 +940,14 @@ snapshot_download(repo_id="CrowdAILab/scicap", repo_type='dataset')`}
             </button>
             {expandedSections.includes('human-eval') && (
               <div className="section-content">
-                <p>We will use a subset of the test set for human evaluation due to the limited human judges available. More details would be announced later.</p>
+                <p>Human evaluation will be performed on a subset of the test set. This year, while our evaluation prioritizes how clearly and accurately a submission conveys the figure's key message, we will also include components of "personalization" in the evaluation. For example, the golden captions will be provided as references to the human judges for ranking submitted captions based on their overall quality and how easily they could be adapted into a finalized description like the original caption.
+                <br />
+                <br />
+                The team with the best average rank wins. 
+                <br />
+                <br />
+                If more than five teams participate, a preliminary screening will be conducted to ensure a high-quality evaluation. In this case, we will use an automated method to select the top five teams. The submissions from these five teams will then proceed to the full human evaluation round.
+                </p>
               </div>
             )}
           </div>
