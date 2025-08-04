@@ -600,9 +600,8 @@ const Challenge2025 = () => {
         <div className="main-text">
           <p>To be considered for awards, you must:</p>
           <ol>
-            <li>Submit your output for the test set via Eval.AI before the deadline, and</li>
-            <li>Provide a report, 2-4 pages in length, detailing your system. Please use the COLM 2025 paper template for your submission.
-              (The Google Form for technical report submission (due on Aug 15) will be made available here when the deadline approaches.)
+            <li>Submit your output for the test set via <a href="https://eval.ai/web/challenges/challenge-page/2561/overview" target="_blank" rel="noopener noreferrer">Eval.AI</a> before the deadline, and</li>
+            <li>Provide a report, 2-4 pages in length, detailing your system. Please use the COLM 2025 paper template and submit your report through this <a href="https://forms.gle/HihiA1RK9ifmWWDS6" target="_blank" rel="noopener noreferrer">Google Form</a>.
             </li>
           </ol>
         </div>
