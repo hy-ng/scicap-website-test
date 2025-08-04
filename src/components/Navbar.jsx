@@ -40,8 +40,9 @@ export default function Navbar() {
   }, []);
 
   // Function to handle menu item clicks and collapse mobile menu
-  const handleMenuItemClick = () => {
-    if (window.innerWidth <= 900) {
+  const handleMenuItemClick = (item) => {
+    // Only close menu if the item has an actual link (not just "#" or empty)
+    if (window.innerWidth <= 900 && item.href && item.href !== "#" && item.href !== "") {
       // Add a small delay to allow the transition to complete smoothly
       setTimeout(() => {
         setIsMobileMenuOpen(false);
@@ -57,7 +58,7 @@ export default function Navbar() {
           target={item.target}
           rel={item.target === '_blank' ? 'noopener noreferrer' : undefined}
           className={item.inactive ? 'inactive' : ''}
-          onClick={handleMenuItemClick}
+          onClick={() => handleMenuItemClick(item)}
         >
           {item.text}{item.hasDropdown && <span className="dropdown-arrow">▸</span>}
         </a>
@@ -108,14 +109,14 @@ export default function Navbar() {
                         href={item.href}
                         target={item.target}
                         rel={item.target === '_blank' ? 'noopener noreferrer' : undefined}
-                        onClick={handleMenuItemClick}
+                        onClick={() => handleMenuItemClick(item)}
                       >
                         {item.text}
                       </a>
                     ) : (
                       <Link
                         to={item.href}
-                        onClick={handleMenuItemClick}
+                        onClick={() => handleMenuItemClick(item)}
                       >
                         {item.text}
                       </Link>
