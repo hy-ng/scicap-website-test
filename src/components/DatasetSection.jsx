@@ -5,7 +5,7 @@ const datasetList = [
     title: "LaMP-CAP (2025)",
     desc: "Built based on SciCap Challenge dataset containing over 300,000 figures from 110,000+ scientific papers, designed for personalized caption generation using multimodal figure profiles.",
     links: {
-      paper: "https://arxiv.org/abs/2506.06561",
+      paper: "https://aclanthology.org/2025.findings-emnlp.521/",
       dataset: "https://github.com/Crowd-AI-Lab/lamp-cap"
     }
   },
