@@ -3,6 +3,34 @@ import { Link } from 'react-router-dom';
 
 const newsList = [
   {
+    date: "Dec 2025",
+    text: (
+      <>
+        <p>
+          We are pleased to announce that our workshop paper,{' '}
+          <a
+            href="https://crowd.ist.psu.edu/pdf/2026/2026-scicap-history.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="news-link"
+          >
+            "Five Years of SciCap: What We Learned and Future Directions for Scientific Figure Captioning"
+          </a>{' '}
+            , will be presented at the {' '}
+          <a
+            href="https://ai-2-ase.github.io/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="news-link"
+          >
+           5th Annual AAAI Workshop on AI to Accelerate Science and Engineering (AI2ASE 2026)
+          </a>{' '}
+          in Singapore this coming January.
+        </p>
+      </>
+    )
+  },
+  {
     date: "Jun 2025",
     text: (
       <>
